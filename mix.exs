@@ -49,7 +49,7 @@ defmodule Algokit.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:desktop, "~> 1.5"},
       {:wx, "~> 1.1", hex: :bridge, targets: [:android, :ios]},
-      {:exqlite, github: "elixir-desktop/exqlite", override: true},
+      # {:exqlite, github: "elixir-desktop/exqlite", override: true},
     ]
   end
 

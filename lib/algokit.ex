@@ -2,7 +2,7 @@ defmodule Algokit do
   use Application
 
   def config_dir() do
-    Path.join([Desktop.OS.home(), ".config", "algokit"])
+    Path.join([Desktop.OS.home(), ".config", "todo_app"])
   end
 
   @app Mix.Project.config()[:app]
@@ -11,7 +11,7 @@ defmodule Algokit do
     File.mkdir_p!(config_dir())
 
     # DBの場所を指定
-    Application.put_env(:algokit, Algokit.Repo,
+    Application.put_env(:todo_app, Algokit.Repo,
       database: Path.join(config_dir(), "/database.sq3")
     )
 
@@ -32,7 +32,7 @@ defmodule Algokit do
     Algokit.Repo.initialize()
 
     # phoenixサーバーが起動中のポート番号を取得
-    # port = :ranch.get_port(AlgokitWeb.Endpoint.HTTP)
+    port = :ranch.get_port(AlgokitWeb.Endpoint.HTTP)
     # メインのsuperviserの配下にElixirDesktopのsuperviserを追加
     {:ok, _} =
       Supervisor.start_child(sup, {
@@ -42,7 +42,7 @@ defmodule Algokit do
           id: AlgokitWindow,
           title: "Algokit",
           size: {400, 800},
-          url: "http://localhost:#{4000}/"
+          url: "http://localhost:#{port}"
         ]
       })
   end
