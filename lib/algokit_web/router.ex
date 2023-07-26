@@ -17,7 +17,8 @@ defmodule AlgokitWeb.Router do
   scope "/", AlgokitWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", MainMenuLive
+    live "/detail", AlgoDetailLive
   end
 
   # Other scopes may use custom stacks.
