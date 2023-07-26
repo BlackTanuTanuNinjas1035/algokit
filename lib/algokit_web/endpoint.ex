@@ -1,14 +1,13 @@
 defmodule AlgokitWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :algokit
+  use Desktop.Endpoint, otp_app: :algokit
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
-    store: :cookie,
+    store: :ets,
     key: "_algokit_key",
-    signing_salt: "DHyfjizv",
-    same_site: "Lax"
+    table: :session
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]

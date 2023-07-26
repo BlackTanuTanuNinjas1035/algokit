@@ -12,13 +12,16 @@ config :algokit,
 
 # Configures the endpoint
 config :algokit, AlgokitWeb.Endpoint,
-  url: [host: "localhost"],
+  # url: [host: "localhost"],
+  http: [ip: {127, 0, 0, 1}, port: 10_000 + :rand.uniform(45_000)],
   render_errors: [
     formats: [html: AlgokitWeb.ErrorHTML, json: AlgokitWeb.ErrorJSON],
     layout: false
   ],
   pubsub_server: Algokit.PubSub,
-  live_view: [signing_salt: "C4rXUMq6"]
+  live_view: [signing_salt: "C4rXUMq6"],
+  secret_key_base: :crypto.strong_rand_bytes(32),
+  server: true
 
 # Configure esbuild (the version is required)
 config :esbuild,
