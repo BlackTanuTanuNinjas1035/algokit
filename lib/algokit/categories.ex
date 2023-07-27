@@ -24,4 +24,10 @@ defmodule Algokit.Categories do
   def list_categories() do
     Repo.all Category
   end
+
+  def get(id) do
+    Category
+    |> where(id: ^id)
+    |> Repo.one()
+  end
 end
