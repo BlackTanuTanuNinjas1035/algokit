@@ -1,7 +1,7 @@
 defmodule Algokit.Algorithms.Algorithm do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Alogokit.Categories
+  alias Algokit.Categories
 
   schema "algorithms" do
     field :description, :string

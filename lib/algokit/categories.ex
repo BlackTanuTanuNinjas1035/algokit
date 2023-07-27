@@ -1,8 +1,8 @@
 defmodule Algokit.Categories do
   alias Algokit.Repo
   alias Algokit.Categories.Category
-
-  import Logger
+  import Ecto.Query
+  require Logger
 
   def init() do
     if Enum.count(Repo.all(Category)) == 0 do

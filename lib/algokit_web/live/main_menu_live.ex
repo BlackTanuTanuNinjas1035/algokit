@@ -10,7 +10,7 @@ defmodule AlgokitWeb.MainMenuLive do
       <div class="grid grid-cols-3 gap-4">
           <%= for category <- @categories do %>
             <!-- <button phx-click="select_category" phx-value-category_id={category.id} class="bg-blue-200 p-4"><%= category.name %></button> -->
-            <.link class="bg-blue-200 p-4" href={~p"/category/" <> "#{category.id}"}><%= category.name %></.link>
+            <.link class="bg-blue-200 p-4" href={~p"/category/#{category.id}"}><%= category.name %></.link>
           <% end %>
         </div>
 
