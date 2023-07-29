@@ -1,11 +1,13 @@
 defmodule AlgokitWeb.DetailLive do
   use AlgokitWeb, :live_view
   alias Algokit.Algorithms
+  alias Algokit.Bookmarks
   require Logger
   def render(assigns) do
     ~H"""
     <.link href={~p"/category/#{@category_id}"}>戻る</.link>
     <p class="text-3xl"><%= @algorithm.name %></p>
+    <button class="" phx-click="push_bookmark_button">a</button>
     <div>説明</div>
     <p class="text-base"><%= @algorithm.description %></p>
     <div>処理</div>
@@ -28,9 +30,22 @@ defmodule AlgokitWeb.DetailLive do
     end
 
     {:ok, assign(socket,
-      category_id: category_id,
-      algorithm_id: algorithm_id,
+      category_id: String.to_integer(category_id),
+      algorithm_id: String.to_integer(algorithm_id),
       algorithm: algorithm
     )}
+  end
+
+  def handle_event("push_bookmark_button", _values, socket) do
+    socket.assigns.algorithm_id
+    |> Bookmarks.add_bookmark()
+    |> case do
+      {:ok, _} ->
+        Logger.info("ブックマークの登録に成功。")
+      {:error, _} ->
+        Logger.info("ブックマークの登録に失敗。")
+    end
+
+    {:noreply, socket}
   end
 end

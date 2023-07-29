@@ -18,9 +18,10 @@ defmodule AlgokitWeb.Router do
     pipe_through :browser
 
     live "/", MainMenuLive
-    live "/detail", AlgoDetailLive
     live "/category/:category_id", SubMenuLive
     live "/category/:category_id/algorithm/:algorithm_id", DetailLive
+    live "/bookmark/", BookmarkLive
+
   end
 
   # Other scopes may use custom stacks.

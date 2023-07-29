@@ -2,6 +2,7 @@ defmodule Algokit.Algorithms.Algorithm do
   use Ecto.Schema
   import Ecto.Changeset
   alias Algokit.Categories
+  alias Algokit.Bookmarks
 
   schema "algorithms" do
     field :description, :string
@@ -11,6 +12,7 @@ defmodule Algokit.Algorithms.Algorithm do
     field :pseudocode, :string
 
     belongs_to :category, Categories.Category
+    has_one :bookmark, Bookmarks.Bookmark
 
     timestamps()
   end
