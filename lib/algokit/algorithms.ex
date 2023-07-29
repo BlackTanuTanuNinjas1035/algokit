@@ -69,9 +69,11 @@ defmodule Algokit.Algorithms do
   Retrieve algorithms that the most recent last viewed date.
   By default, fetch 5 records.
   """
-  def fetch_recent_by_last_viewed(limit \\ 5) do
+  def fetch_recent_last_viewed_date(limit \\ 5) do
     Algorithm
     |> order_by(desc: :last_viewed_date)
+    |> where([a], is_nil(a.last_viewed_date) == false)
+    |> preload([:category])
     |> limit(^limit)
     |> Repo.all()
   end

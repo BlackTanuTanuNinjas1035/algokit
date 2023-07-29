@@ -14,7 +14,7 @@ config :algokit, Algokit.Repo,
 # you can enable the server option below.
 config :algokit, AlgokitWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "zaWcNttxy4hIVfGK0RlI2bufaZ0Q1K9hxkPQ45lk7amfPvBIyg5a4Dujqf0l9Jah",
+  secret_key_base: "os34ea+ZigTzHr99OQnfAEw8/7aOkgh100ReJgcAHUfJzdIQbO0O4k3dNtxzD/VX",
   server: false
 
 # Print only warnings and errors during test

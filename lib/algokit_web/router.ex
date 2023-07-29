@@ -21,7 +21,6 @@ defmodule AlgokitWeb.Router do
     live "/detail", AlgoDetailLive
     live "/category/:category_id", SubMenuLive
     live "/category/:category_id/algorithm/:algorithm_id", DetailLive
-
   end
 
   # Other scopes may use custom stacks.

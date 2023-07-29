@@ -19,7 +19,7 @@ config :algokit, AlgokitWeb.Endpoint,
     layout: false
   ],
   pubsub_server: Algokit.PubSub,
-  live_view: [signing_salt: "C4rXUMq6"],
+  live_view: [signing_salt: "yaYeSDKC"],
   secret_key_base: :crypto.strong_rand_bytes(32),
   server: true
 

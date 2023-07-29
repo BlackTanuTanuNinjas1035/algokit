@@ -2,7 +2,7 @@ defmodule Algokit do
   use Application
 
   def config_dir() do
-    Path.join([Desktop.OS.home(), ".config", "todo_app"])
+    Path.join([Desktop.OS.home(), ".config", "algokit"])
   end
 
   @app Mix.Project.config()[:app]
@@ -11,7 +11,7 @@ defmodule Algokit do
     File.mkdir_p!(config_dir())
 
     # DBの場所を指定
-    Application.put_env(:todo_app, Algokit.Repo,
+    Application.put_env(:algokit, Algokit.Repo,
       database: Path.join(config_dir(), "/database.sq3")
     )
 

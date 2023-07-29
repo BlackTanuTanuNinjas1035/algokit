@@ -47,9 +47,9 @@ defmodule Algokit.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:exqlite, github: "elixir-desktop/exqlite", override: true},
       {:desktop, "~> 1.5"},
-      {:wx, "~> 1.1", hex: :bridge, targets: [:android, :ios]},
-      # {:exqlite, github: "elixir-desktop/exqlite", override: true},
+      {:wx, "~> 1.1", hex: :bridge, targets: [:android, :ios]}
     ]
   end
 
