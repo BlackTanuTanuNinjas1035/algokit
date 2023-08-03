@@ -14,13 +14,21 @@ defmodule Algokit.Bookmarks do
   end
 
   def delete_bookmark(id) do
-    bookmark = Repo.get(Bookmark, id)
+    bookmark = Repo.get_by(Bookmark, algorithm_id: id)
     if bookmark != nil do
       Repo.delete(bookmark)
     end
   end
 
   def exists_bookmark?(id) do
-    Repo.exists?(Bookmark, id: id)
+    # Repo.exists?(Bookmark, algorithm_id: id)
+    Bookmark
+    |> where(algorithm_id: ^id)
+    |> Repo.all
+    |> Enum.count()
+    |> case do
+      0 -> false
+      _ -> true
+    end
   end
 end
