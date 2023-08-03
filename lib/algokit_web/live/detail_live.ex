@@ -43,7 +43,7 @@ defmodule AlgokitWeb.DetailLive do
           </div>
 
           <!-- スマホ画面 -->
-          <div class="md:hidden w-auto max-w-md mx-auto p-4 my-2 rounded-lg border-yellow-500 bg-white shadow-md">
+          <div class="min-[500px]:hidden w-auto max-w-md mx-auto p-4 my-2 rounded-lg border-yellow-500 bg-white shadow-md">
             <p onclick="toggleDescription()" class=" text-xl text-center cursor-pointer"
             >
               <%= String.slice(@algorithm.description, 0, 50) <> "..." %>
