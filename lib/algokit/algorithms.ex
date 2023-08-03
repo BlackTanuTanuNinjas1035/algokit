@@ -11,7 +11,28 @@ defmodule Algokit.Algorithms do
   """
   def init() do
     if Enum.count(Repo.all(Algorithm)) == 0 do
-      Repo.insert %Algorithm{name: "あれをする方法", category_id: 1, description: "あれをするよ。", pseudocode: "疑似コードです", example: "実装例。", last_viewed_date: nil}
+      Repo.insert(%Algorithm{
+        name: "ガンスプライト角度計算",
+        category_id: 1,
+        description:
+          "プレイヤーの位置とマウスカーソルの位置から、銃のスプライトの向きを計算する。\n" <>
+          "入力:\n" <>
+          "* playerの位置: 浮動小数点(x, y)\n" <>
+          "* cursorの位置: 浮動小数点(x, y)\n" <>
+          "* gunの位置: 浮動小数点数(x, y)\n" <>
+          "* 出力: 銃のスプライトの向き(度数法)\n" <>
+          "なお例では度数法に変換せずラジアンで使用している。",
+        pseudocode:
+          "関数 ガンスプライト角度計算(プレイヤー, マウスカーソル, 銃):\n" <>
+          "    ベクトル = (\n" <>
+          "        マウスカーソル位置.x - ( プレイヤー.x + 銃の位置オフセット.x),\n" <>
+          "        マウスカーソル位置.y - (プレイヤー位置.y + 銃の位置オフセット.y)\n" <>
+          "    )\n" <>
+          "    角度ラジアン = atan2(ベクトル.y, ベクトル.x)\n" <>
+          "    角度度数法 = to_degrees(角度ラジアン)\n" <>
+          "    戻り値 角度度数法",
+        example: "calc_angle.mp4"
+      })
     else
       Logger.debug("すでに初期化済みです。")
     end
@@ -43,7 +64,10 @@ defmodule Algokit.Algorithms do
     nil
   """
   def get(id) do
-    Repo.get(Algorithm, id)
+    Algorithm
+    |> where(id: ^id)
+    |> preload([:category])
+    |> Repo.one()
   end
 
   @doc """
@@ -69,7 +93,7 @@ defmodule Algokit.Algorithms do
   Retrieve algorithms that the most recent last viewed date.
   By default, fetch 5 records.
   """
-  def fetch_recent_last_viewed_date(limit \\ 5) do
+  def fetch_recent_last_viewed_date(limit \\ 3) do
     Algorithm
     |> order_by(desc: :last_viewed_date)
     |> where([a], is_nil(a.last_viewed_date) == false)

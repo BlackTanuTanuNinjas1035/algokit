@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="ex_dbus" type="mix">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_dbus/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/ex_dbus/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_dbus/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/ex_dbus/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_dbus/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/ex_dbus/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_dbus/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/ex_dbus/ebin" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/deps/ex_dbus/lib" />
+      <root url="file://$PROJECT_DIR$/deps/ex_dbus/lib" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="desktop" type="mix">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/desktop/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/desktop/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/desktop/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/desktop/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/desktop/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/desktop/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/desktop/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/desktop/ebin" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/deps/desktop/lib" />
+      <root url="file://$PROJECT_DIR$/deps/desktop/src" />
+      <root url="file://$PROJECT_DIR$/deps/desktop/lib" />
+      <root url="file://$PROJECT_DIR$/deps/desktop/src" />
+    </SOURCES>
+  </library>
+</component>

@@ -41,7 +41,8 @@ defmodule Algokit do
           app: @app,
           id: AlgokitWindow,
           title: "Algokit",
-          size: {400, 800},
+          # size: {400, 800}, 縦
+          size: {800, 400},
           url: "http://localhost:#{port}"
         ]
       })

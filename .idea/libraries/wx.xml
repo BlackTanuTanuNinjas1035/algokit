@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="wx" type="mix">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/wx/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/wx/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/wx/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/wx/ebin" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/deps/wx/lib" />
+      <root url="file://$PROJECT_DIR$/deps/wx/lib" />
+    </SOURCES>
+  </library>
+</component>

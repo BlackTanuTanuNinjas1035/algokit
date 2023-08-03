@@ -6,6 +6,7 @@ defmodule Algokit.Categories do
 
   def init() do
     if Enum.count(Repo.all(Category)) == 0 do
+      Repo.insert %Category{name: "2次元ベクトルの角度計算"}
       Repo.insert %Category{name: "探索"}
       Repo.insert %Category{name: "ソート"}
       Repo.insert %Category{name: "グラフ"}

@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="ex_sni" type="mix">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_sni/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/ex_sni/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_sni/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/ex_sni/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_sni/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/ex_sni/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/ex_sni/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/android_prod/lib/ex_sni/ebin" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/deps/ex_sni/lib" />
+      <root url="file://$PROJECT_DIR$/deps/ex_sni/lib" />
+    </SOURCES>
+  </library>
+</component>

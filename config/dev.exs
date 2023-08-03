@@ -53,7 +53,7 @@ config :algokit, AlgokitWeb.Endpoint,
 config :algokit, AlgokitWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg|mp4|video)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/algokit_web/(controllers|live|components)/.*(ex|heex)$"
     ]

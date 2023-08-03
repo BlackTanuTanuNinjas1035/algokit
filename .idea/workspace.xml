@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="be2fc96a-dfe8-43b8-b6df-0084448c7c66" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/config/dev.exs" beforeDir="false" afterPath="$PROJECT_DIR$/config/dev.exs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/algokit/algorithms.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/algokit/algorithms.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/algokit/bookmarks.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/algokit/bookmarks.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/algokit/categories.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/algokit/categories.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/algokit_web.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/algokit_web.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/algokit_web/components/layouts/app.html.heex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/algokit_web/components/layouts/app.html.heex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/algokit_web/live/bookmark_live.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/algokit_web/live/bookmark_live.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/algokit_web/live/detail_live.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/algokit_web/live/detail_live.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/algokit_web/live/main_menu_live.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/algokit_web/live/main_menu_live.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/algokit_web/live/sub_menu_live.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/algokit_web/live/sub_menu_live.ex" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="CLEAR_OUTPUT_DIRECTORY" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2TMaf7JDlmZex9bQOBAv1V8SNKt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "/home/linsei/Programming/Develop/desktop_dir_new/android-example-app"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="be2fc96a-dfe8-43b8-b6df-0084448c7c66" name="Changes" comment="" />
+      <created>1690855504111</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1690855504111</updated>
+    </task>
+    <servers />
+  </component>
+</project>
