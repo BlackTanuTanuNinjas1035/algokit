@@ -1,32 +1,101 @@
 defmodule AlgokitWeb.BookmarkLive do
   use AlgokitWeb, :live_view
   alias Algokit.Bookmarks
+  import Logger
 
   def render(assigns) do
     ~H"""
-      <p class="text-xl">ブックマーク一覧</p>
+      <div class="flex justify-between py-2 px-2 align_bottom">
+        <.link
+          href={
+            cond do
+              @algorithm_id && @category_id -> ~p"/category/#{@category_id}/algorithm/#{@algorithm_id}"
+              @category_id -> ~p"/category/#{@category_id}"
+              true -> ~p"/"
+            end
+          }
+          class="flex justify-center items-center text-center min-[500px]:min-h-[80px] min-[500px]:min-w-[160px] max-[500px]:min-h-[50px] max-[500px]:min-w-[100px] bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+        >
+          戻る
+        </.link>
+
+      </div>
+
+
+      <p class="text-2xl text-center my-2">ブックマーク一覧</p>
       <%= if Enum.count(@bookmarks) == 0 do%>
         <p>ないよ</p>
       <% else %>
-        <div class="ax-w-xs flex flex-col max-h-[28%] overflow-hidden">
+      <div class="flex justify-center">
+        <div class="max-[500px]:p-2 min-[500px]:min-w-[70%] flex flex-col overflow-hidden">
           <%= for bookmark <- @bookmarks do%>
             <.link
               href={~p"/category/#{bookmark.algorithm.category_id}/algorithm/#{bookmark.algorithm_id}"}
-              class="inline-flex items-center gap-x-3.5 py-3 px-4 text-sm font-medium border text-blue-600 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:border-gray-700"
+              class="inline-flex items-center justify-between gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white"
             >
-              <%= bookmark.algorithm.name %>:<%= bookmark.added_date %>
+              <div >
+                <p class="text-xs text-blue-500">名前</p>
+                <p class=""><%= bookmark.algorithm.name %></p>
+              </div>
+              <div class="max-[500px]:hidden">
+                <p class="text-xs text-blue-500">カテゴリ</p>
+                <p><%= bookmark.algorithm.category.name %></p>
+              </div>
+              <div>
+                <p class="text-xs text-blue-500">登録日</p>
+                <p><%= bookmark.added_date %></p>
+              </div>
             </.link>
           <% end %>
         </div>
+      </div>
       <% end %>
+
+
     """
   end
 
-  def mount(_pparams, _session, socket) do
+  # detailから
+  def mount(%{"category_id" => category_id, "algorithm_id" => algorithm_id}, _session, socket) do
+
+    Logger.info("detail -> bookmark")
+
     bookmarks = Bookmarks.list_bookmarks()
     {:ok, assign(socket,
+      category_id: String.to_integer(category_id),
+      algorithm_id: String.to_integer(algorithm_id),
       bookmarks: bookmarks
     )}
+  end
+
+  # sub_menuから
+  def mount(%{"category_id" => category_id}, _session, socket) do
+
+    Logger.info("sub_menu -> bookmark")
+
+    bookmarks = Bookmarks.list_bookmarks()
+    {:ok, assign(socket,
+      category_id: String.to_integer(category_id),
+      algorithm_id: nil,
+      bookmarks: bookmarks
+    )}
+  end
+
+  # menuから
+  def mount(%{}, _session, socket) do
+
+    Logger.info("menu -> bookmark")
+
+    bookmarks = Bookmarks.list_bookmarks()
+    {:ok, assign(socket,
+      category_id: nil,
+      algorithm_id: nil,
+      bookmarks: bookmarks
+    )}
+  end
+
+  def handle_event("visit_bookmark", _value, socket) do
+    {:noreply, socket}
   end
 
 end

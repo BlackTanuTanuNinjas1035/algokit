@@ -63,9 +63,9 @@ defmodule Algokit.Algorithms do
     iex> get(999)
     nil
   """
-  def get(id) do
+  def get(algorithm_id) do
     Algorithm
-    |> where(id: ^id)
+    |> where([a], a.id == ^algorithm_id)
     |> preload([:category])
     |> Repo.one()
   end
@@ -100,5 +100,24 @@ defmodule Algokit.Algorithms do
     |> preload([:category])
     |> limit(^limit)
     |> Repo.all()
+  end
+
+  @doc """
+  指定した単語を含む名前のアルゴリズムを取得。
+  なお未入力("")で全部取得する
+  """
+  def search_name_with_keywords(id, keyword) do
+    list_algorithms_by_category_id(id)
+    |> Enum.filter(fn algorithm -> String.match?(algorithm.name, ~r/#{keyword}/) end)
+  end
+
+  @doc """
+  カテゴリーごとのアルゴリズムの数を取得
+  """
+  def count_by_category(id) do
+    Algorithm
+    |> where(category_id: ^id)
+    |> Repo.all()
+    |> Enum.count()
   end
 end

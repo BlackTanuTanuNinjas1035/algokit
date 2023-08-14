@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@preline/overlay": "^1.4.0",
+    "@preline/tooltip": "^1.5.0",
+    "swiper": "^10.1.0"
+  }
+}
