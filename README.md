@@ -3,6 +3,7 @@
 ゲーム制作時に使えるアルゴリズムをまとめたメモ帳みたいな使い方ができるアプリです。
 現在はアンドロイドのみ対応です。
 Elixirを使用しておりますので、必ずElixirとErlangはインストールをしておいてください。[^1]
+急造したものですのでtestなどはかけていません。
 
 # 使い方
 1. まず当リポジトリからcloneしてください。`git clone https://github.com/BlackTanuTanuNinjas1035/algokit`
