@@ -14,20 +14,29 @@ defmodule AlgokitWeb.BookmarkLive do
               true -> ~p"/"
             end
           }
-          class="flex justify-center items-center text-center min-[500px]:min-h-[80px] min-[500px]:min-w-[160px] max-[500px]:min-h-[50px] max-[500px]:min-w-[100px] bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          class="flex justify-center items-center text-center h-[50px] w-[100px] md:max-h-[80px] md:min-w-[140px] bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
         >
           戻る
         </.link>
+
+        <p class="hidden md:block text-black opacity-[10%]">大画面モード</p>
+        <p class="md:hidden text-black opacity-[10%]">小画面モード</p>
 
       </div>
 
 
       <p class="text-2xl text-center my-2">ブックマーク一覧</p>
       <%= if Enum.count(@bookmarks) == 0 do%>
-        <p>ないよ</p>
+        <div class="flex justify-center">
+          <div class="p-2 md:min-w-[70%] flex flex-col overflow-hidden">
+            <p
+              class="inline-flex items-center justify-between gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+            >ないよ</p>
+          </div>
+        </div>
       <% else %>
       <div class="flex justify-center">
-        <div class="max-[500px]:p-2 min-[500px]:min-w-[70%] flex flex-col overflow-hidden">
+        <div class="p-2 md:min-w-[70%] flex flex-col overflow-hidden">
           <%= for bookmark <- @bookmarks do%>
             <.link
               href={~p"/category/#{bookmark.algorithm.category_id}/algorithm/#{bookmark.algorithm_id}"}
@@ -37,7 +46,7 @@ defmodule AlgokitWeb.BookmarkLive do
                 <p class="text-xs text-blue-500">名前</p>
                 <p class=""><%= bookmark.algorithm.name %></p>
               </div>
-              <div class="max-[500px]:hidden">
+              <div class="hidden">
                 <p class="text-xs text-blue-500">カテゴリ</p>
                 <p><%= bookmark.algorithm.category.name %></p>
               </div>

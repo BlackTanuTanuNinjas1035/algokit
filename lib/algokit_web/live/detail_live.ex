@@ -8,12 +8,15 @@ defmodule AlgokitWeb.DetailLive do
       <div class="flex justify-between py-2 px-2 align_bottom">
         <.link
           href={~p"/category/#{@category_id}"}
-          class="flex justify-center items-center max-[500px]:min-h-[50px] max-[500px]:min-w-[100px] min-[500px]:min-h-[80px] min-[500px]:min-w-[160px] bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          class="flex justify-center items-center h-[50px] w-[100px] md:max-h-[80px] md:min-w-[140px] bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
         >
           戻る
         </.link>
 
-        <button class="flex-grow min-[500px]:max-h-[80px] max-[500px]:max-h-[50px] min-[500px]:max-w-[80px] max-[500px]:max-w-[50px]" phx-click="push_bookmark_button">
+        <p class="hidden md:block text-black opacity-[10%]">大画面モード</p>
+        <p class="md:hidden text-black opacity-[10%]">小画面モード</p>
+
+        <button class="md:max-h-[80px] h-[50px] md:max-w-[80px] w-[50px]" phx-click="push_bookmark_button">
           <img src=
             {
               if @bookmark, do: ~p"/images/スターの枠アイコン(たぬ).png", else: ~p"/images/ICOOON_MONO/スターの枠アイコン.png"
@@ -21,12 +24,9 @@ defmodule AlgokitWeb.DetailLive do
             class=""
           />
         </button>
-
-
       </div>
 
-
-      <div class=" w-full  max-[500px]:px-2">
+      <div class=" w-full  px-2 h-auto ">
 
         <!-- 名前とカテゴリ -->
         <div class="flex justify-center mb-1">
@@ -41,16 +41,16 @@ defmodule AlgokitWeb.DetailLive do
         <!-- Description -->
         <div class="w-full mb-2">
 
-          <div class="flex mr-2 min-[500px]:justify-center min-[500px]:my-1">
-            <p class="text-3xl max-[500px]:text-2xl mr-2  border-b-2 border-gray-500">1. 説明</p>
-            <p class="text-red-500 hidden max-[500px]:block text-sm pt-2">※クリックで詳細</p>
+          <div class="flex mr-2 md:justify-center md:my-1">
+            <p class="text-3xl text-2xl mr-2  border-b-2 border-gray-500">1. 説明</p>
+            <p class="text-red-500 md:hidden block text-sm pt-2">※クリックで詳細</p>
           </div>
 
           <!-- スマホ画面 -->
           <button
             type="button"
             data-hs-overlay="#description-overlay"
-            class="min-[500px]:hidden w-auto mx-auto p-4 mt-2 rounded-lg border-yellow-500 bg-white shadow min-[500px]"
+            class="block md:hidden w-auto mx-auto p-4 mt-2 rounded-lg border-yellow-500 bg-white shadow min-[500px]"
           >
             <p class=" text-xl text-center cursor-pointer"
             >
@@ -59,10 +59,10 @@ defmodule AlgokitWeb.DetailLive do
           </button>
 
           <!-- 横画面 -->
-          <div class="flex justify-center w-full max-[500px]:hidden ">
-            <div class=" overflow-auto bg-white max-[500px]:hidden min-[500px]:w-[80%]  border-[3px] border-yellow-200">
+          <div class="hidden md:flex justify-center items-center max-h-max">
+            <div class="flex flex-col justify-center bg-white w-[80%] border-[3px] border-yellow-200 p-4">
               <%= for line <- String.split(@algorithm.description, "\n") do %>
-                <div class="text-base min-[500px]:text-2xl"><%= line %></div>
+                <div class="text-left text-xl"><%= line %></div>
               <% end %>
             </div>
           </div>
@@ -70,7 +70,7 @@ defmodule AlgokitWeb.DetailLive do
 
 
         <!-- Discription 詳細 -->
-        <div id="description-overlay" class="[--overlay-backdrop:true] hs-overlay hs-overlay-open:translate-y-0 -translate-y-full fixed top-0 inset-x-0 transition-all duration-300 transform max-h-max h-full w-full z-[60] bg-white border-b dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
+        <div id="description-overlay" class="[--overlay-backdrop:true] hs-overlay hs-overlay-open:translate-y-0 -translate-y-full fixed top-0 inset-x-0 transition-all duration-300 transform max-h-max h-auto w-full z-[60] bg-white border-b dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
           <div class="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700 bg-blue-300">
             <h3 class="font-bold text-gray-800 dark:text-white">
               説明
@@ -96,11 +96,11 @@ defmodule AlgokitWeb.DetailLive do
         <!-- Pseudocode -->
         <div class="w-full mb-2">
 
-          <div class="flex mr-2 min-[500px]:justify-center min-[500px]:my-1">
-            <p class="text-3xl max-[500px]:hidden max-[500px]:text-2xl mr-2  border-b-2 border-gray-500">2. 疑似コード</p>
+          <div class="hidden md:flex mr-2 md:justify-center md:my-1">
+            <p class="text-3xl text-2xl mr-2  border-b-2 border-gray-500">2. 疑似コード</p>
           </div>
 
-          <div class="flex justify-center w-full mb-2 min-[500px]:hidden">
+          <div class="flex justify-center w-full mb-2 md:hidden">
             <button
               type="button"
               data-hs-overlay="#pseudocode-overlay"
@@ -111,17 +111,17 @@ defmodule AlgokitWeb.DetailLive do
           </div>
 
           <!-- 横画面 -->
-          <div class="flex justify-center w-full max-[500px]:hidden">
-            <div class="overflow-auto bg-white max-[500px]:hidden min-[500px]:w-[80%] border-[3px] border-blue-200">
+          <div class="hidden md:flex justify-center items-center max-h-max">
+            <div class="overflow-auto bg-white md:w-[80%] border-[3px] border-blue-200">
               <%= for line <- String.split(@algorithm.pseudocode, "\n") do %>
-                <div class="text-base min-[500px]:text-2xl"><%= line %></div>
+                <div class="text-xl text-left"><%= line %></div>
               <% end %>
             </div>
           </div>
         </div>
 
         <!-- 詳細 -->
-        <div id="pseudocode-overlay" class="[--overlay-backdrop:true] hs-overlay hs-overlay-open:translate-y-0 -translate-y-full fixed top-0 inset-x-0 transition-all duration-300 transform max-h-max h-full w-full z-[60] bg-white border-b dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
+        <div id="pseudocode-overlay" class="[--overlay-backdrop:true] hs-overlay hs-overlay-open:translate-y-0 -translate-y-full fixed top-0 inset-x-0 transition-all duration-300 transform max-h-max h-auto w-full z-[60] bg-white border-b dark:bg-gray-800 dark:border-gray-700 hidden" tabindex="-1">
           <div class="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700 bg-yellow-300">
             <h3 class="font-bold text-gray-800 dark:text-white">
               疑似コード
@@ -144,8 +144,8 @@ defmodule AlgokitWeb.DetailLive do
 
         <!-- Example -->
         <div class="overflow-y-scroll">
-          <div class="max-w min-[500px] mx-auto p-4 rounded-lg border-yellow-500 bg-white shadow min-[500px]:w-[80%]">
-            <div class="max-[500px]:text-base min-[500px]:text-xl font-semibold mb-1">使用例</div>
+          <div class="max-w min-[500px] mx-auto p-4 rounded-lg border-yellow-500 bg-white shadow md:w-[80%]">
+            <div class="text-base md:text-xl font-semibold mb-1">使用例</div>
             <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
               <video controls autoplay loop class="w-full h-full">
                 <source src="/videos/calc_angle.mp4" type="video/mp4">

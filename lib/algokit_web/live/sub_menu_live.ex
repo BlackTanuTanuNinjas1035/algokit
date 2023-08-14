@@ -10,22 +10,25 @@ defmodule AlgokitWeb.SubMenuLive do
       <div class="flex justify-between py-2 px-2 align_bottom">
         <.link
         href={~p"/"}
-          class="flex justify-center items-center text-center min-[500px]:min-h-[80px] min-[500px]:min-w-[160px] max-[500px]:min-h-[50px] max-[500px]:min-w-[100px] bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          class="flex justify-center items-center text-center sm:min-h-[50px] sm:min-w-[100px] min-h-[50px] min-w-[100px] bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
         >
           戻る
         </.link>
 
+        <p class="hidden md:block text-black opacity-[10%]">大画面モード</p>
+        <p class="md:hidden text-black opacity-[10%]">小画面モード</p>
+
       </div>
 
       <!--カテゴリ名 -->
-      <div class="max-[500px]:w-full flex justify-center mb-2">
+      <div class="w-full flex justify-center mb-2">
         <div class="flex flex-col bg-yellow-100 border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
-          <div class="bg-yellow-200 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-gray-800 dark:border-gray-700">
+          <div class="bg-yellow-200 border-b rounded-t-xl py-3 px-4 sm:py-4 sm:px-5 dark:bg-gray-800 dark:border-gray-700">
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-500">
               カテゴリー
             </p>
           </div>
-          <div class="p-4 md:p-5">
+          <div class="p-4 sm:p-5">
             <h3 class="text-2xl text-center text-gray-800 dark:text-white">
               <%= "#{@category.name}" %>
             </h3>
@@ -37,17 +40,17 @@ defmodule AlgokitWeb.SubMenuLive do
       <.form
         :let={f}
         phx-submit="search_by_keyword"
-        class="max-[500px]:w-full"
+        class="w-full"
       >
         <div class="mb-2 w-screen flex justify-center items-center">
           <label for="hs-trailing-button-add-on-with-icon" class="sr-only">Label</label>
           <div class="flex rounded-md shadow-sm">
             <.input type="text" field={f[:keyword]} id="hs-trailing-button-add-on-with-icon"
-              class="text-xl px-4 block  max-[500px]:min-h-[50px] min-[500px]:min-w-[400px] min-[500px]:min-h-[80px] border-gray-200 shadow-sm rounded-l-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+              class="text-xl px-4 block  max-h-[50px] sm:min-w-[400px] sm:max-h-[50px] border-gray-200 shadow-sm rounded-l-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
               placeholder="単語で検索"
             />
             <.button
-              class="max-[500px]:min-h-[50px] min-[500px]:min-h-[80px] min-[500px]:min-w-[80px] inline-flex flex-shrink-0 justify-center items-center h-[2.875rem] w-[2.875rem] rounded-r-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm"
+              class="max-h-[50px] sm:max-h-[50px] sm:min-w-[80px] inline-flex flex-shrink-0 justify-center items-center h-[2.875rem] w-[2.875rem] rounded-r-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm"
             >
               <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -59,7 +62,7 @@ defmodule AlgokitWeb.SubMenuLive do
 
       <!-- PrevとNext sm -->
       <%= if Enum.count(@algorithms_list_sm) != 0 do %>
-        <div class="flex justify-center mb-2 min-[500px]:hidden">
+        <div class="flex justify-center mb-2 sm:hidden">
           <div class="bg-white justify-center inline-flex -space-x-0 divide-x divide-gray-300 overflow-hidden rounded-lg border border-gray-300 shadow-sm">
             <%= if @index_sm != 0 do %>
               <button type="button" phx-click="change_index_sm" phx-value-diff="-1" class="bg-green-200 px-6 py-3 text-center text-base font-medium text-secondary-700 hover:bg-green-300">Prev</button>
@@ -78,32 +81,39 @@ defmodule AlgokitWeb.SubMenuLive do
 
       <!-- PrevとNext md -->
       <%= if Enum.count(@algorithms_list_md) != 0 do %>
-        <div class="inline-flex rounded-md shadow-sm w-full justify-between min-h-[80px] max-[500px]:hidden px-2">
-          <!-- Prev ボタン -->
-          <%= if @index_md != 0 do %>
-            <button type="button" phx-click="change_index_md" phx-value-diff="-1" class="w-[30%] py-3 px-4 inline-flex justify-center items-center gap-2 -ml-px first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-green-200 text-gray-700 align-middle hover:bg-green-300 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
-              Prev
-            </button>
-          <% else %>
-            <button type="button" disabled class="opacity-[30%] w-[30%] py-3 px-4 inline-flex justify-center items-center gap-2 -ml-px first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-white text-gray-700 align-middle focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
+        <div class="flex justify-center items-center  text-cneter rounded-md shadow-sm  hidden sm:block w-full">
 
-            </button>
-          <% end %>
+        <!--
+          少画面で横にしたときPrevが潰れる。
+        -->
+          <div class=" flex justify-center items-center text-center w-full">
 
-          <!-- Index -->
-          <div class="w-[40%] py-3 px-4 inline-flex justify-center items-center gap-2 -ml-px first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-white text-gray-700 align-middle focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
-            <%= "#{@index_md + 1}ページ目" %>
+            <!-- Prev ボタン -->
+            <%= if @index_md != 0 do %>
+              <button type="button" phx-click="change_index_md" phx-value-diff="-1" class="w-[120px] h-[50px] h-full  inline-flex justify-center items-center first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-green-200 text-gray-700 align-middle hover:bg-green-300 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
+                Prev
+              </button>
+            <% else %>
+              <button type="button" disabled class="bg-gray-200 w-[120px] h-[50px] opacity-[70%]  py-3 px-4 inline-flex justify-center items-center  first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-white text-gray-700 align-middle focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
+
+              </button>
+            <% end %>
+
+            <!-- Index -->
+            <div class="w-[120px] h-[50px] inline-flex flex justify-center items-center bg-white">
+              <%= "#{@index_md + 1}ページ目" %>
+            </div>
+
+            <!-- Next ボタン -->
+            <%= if @index_md < Enum.count(@algorithms_list_md) - 1 do %>
+              <button type="button" phx-click="change_index_md" phx-value-diff="1" class="w-[120px] h-[50px] py-3 px-4 inline-flex justify-center items-center   first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-blue-200 text-gray-700 align-middle hover:bg-blue-300 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
+                Next
+              </button>
+            <% else %>
+              <button type="button" disabled class="bg-gray-200 w-[120px] h-[50px] opacity-[70%]  py-3 px-4 inline-flex justify-center items-center   first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-white text-gray-700 align-middle focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
+              </button>
+            <% end %>
           </div>
-
-          <!-- Next ボタン -->
-          <%= if @index_md < Enum.count(@algorithms_list_md) - 1 do %>
-            <button type="button" phx-click="change_index_md" phx-value-diff="1" class="w-[30%] py-3 px-4 inline-flex justify-center items-center gap-2 -ml-px first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-blue-200 text-gray-700 align-middle hover:bg-blue-300 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
-              Next
-            </button>
-          <% else %>
-            <button type="button" disabled class="opacity-[30%] w-[30%] py-3 px-4 inline-flex justify-center items-center gap-2 -ml-px first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-white text-gray-700 align-middle focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
-            </button>
-          <% end %>
         </div>
       <% end %>
 
@@ -112,8 +122,8 @@ defmodule AlgokitWeb.SubMenuLive do
         <p class="text-center">登録されていません。</p>
       <% else %>
         <!-- スマホ用(5つ) -->
-        <div class="flex justify-center">
-          <ul class="max-w-xs flex flex-col w-full px-2 min-[500px]:hidden">
+        <div class="flex justify-center block md:hidden">
+          <ul class="max-w-xs flex flex-col w-full px-2 ">
             <%= for algorithm <- Enum.at(@algorithms_list_sm, @index_sm) do %>
               <li class="inline-flex items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white hover:bg-gray-100 border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                 <.link
@@ -133,28 +143,27 @@ defmodule AlgokitWeb.SubMenuLive do
           </ul>
         </div>
 
-        <!-- 横画面以上用(10) -->
-        <div class="flex justify-center max-[500px]:hidden">
-          <ul class="max-w-[80%] flex flex-col w-full px-2 ">
-            <%= for algorithm <- Enum.at(@algorithms_list_md, @index_md) do %>
-              <li class="inline-flex items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
-
-                <.link
-                  href={~p"/category/#{@category_id}/algorithm/#{algorithm.id}"}
-                  class="block w-full cursor-pointer rounded-lg bg-primary-100 p-4 text-primary-600 text-center text-3xl"
-                >
-                  <%= algorithm.name %>
-                </.link>
+        <ul class="w-full text-center hidden md:flex flex-col m-2">
+        <%= for algorithm <- Enum.at(@algorithms_list_md, @index_md) do %>
+          <li class="flex justify-center items-cetner min-w-[50px] max-h-max mb-1">
+              <.link
+                href={~p"/category/#{@category_id}/algorithm/#{algorithm.id}"}
+                class="block w-[60%] bg-yellow-500 cursor-pointer rounded-lg bg-primary-100 p-4 text-primary-600 text-center text-xl flex justify-center items-cetner gap-x-2"
+              >
+                <p class="flex justify-center items-cetner"><%= algorithm.name %></p>
                 <%= if algorithm.is_bookmark do %>
                   <img src={~p"/images/スターの枠アイコン(たぬ).png"}
-                    class="bookmark  max-h-[80px] max-w-[80px]"
+                    class="bookmark max-h-[30px] max-w-[30px] inline-flex "
                     alt="星"
                   />
                 <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
+              </.link>
+
+          </li>
+        <% end %>
+      </ul>
+
+
       <% end %>
     """
   end

@@ -8,6 +8,10 @@ defmodule AlgokitWeb.MainMenuLive do
     ~H"""
       <!-- ヘッダー -->
       <header class="py-3 w-full border-b border-gray-300">
+
+        <p class="hidden md:block text-black opacity-[10%] text-center">大画面モード</p>
+        <p class="md:hidden text-black opacity-[10%] text-center">小画面モード</p>
+
         <p class="text-3xl font-bold text-center text-indigo-600"
           style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);"
         >
@@ -21,17 +25,17 @@ defmodule AlgokitWeb.MainMenuLive do
       <%= if @sorted_algorithms != [] do %>
         <div class="flex items-center justify-center px-2">
           <div
-            class="w-full min-[500px]:p-4 max-[500px]:p-2  flex flex-col overflow-hidden min-[500px]:max-w-[80%] rounded-lg shadow-lg"
+            class="w-full md:p-4 p-2  flex flex-col overflow-hidden md:max-w-[80%] rounded-lg shadow-lg"
             style="background-image: url('/images/free-texture.net/CorkBoard02.jpg'); background-size: cover;"
           >
             <%= for algorithm <- @sorted_algorithms do %>
               <.link
                 href={~p"/category/#{algorithm.category_id}/algorithm/#{algorithm.id}"}
-                class="inline-flex  max-[500px]:justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white hover:bg-gray-100 border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                class="inline-flex  justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white hover:bg-gray-100 border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white"
               >
-                <p class="min-[500px]:w-1/3 min-[500px]:text-base  text-left"><%= algorithm.name %></p>
-                <p class="max-[500px]:hidden min-[500px]:w-1/3 text-center text-base"><%= algorithm.category.name %></p>
-                <p class="min-[500px]:text-base min-[500px]:w-1/3 text-right"><%= "#{algorithm.last_viewed_date.year}年#{algorithm.last_viewed_date.month}月#{algorithm.last_viewed_date.day}日" %></p>
+                <p class="md:w-1/3 md:text-base  text-left"><%= algorithm.name %></p>
+                <p class="hidden md:w-1/3 text-center text-base"><%= algorithm.category.name %></p>
+                <p class="md:text-base md:w-1/3 text-right"><%= "#{algorithm.last_viewed_date.year}年#{algorithm.last_viewed_date.month}月#{algorithm.last_viewed_date.day}日" %></p>
               </.link>
             <% end %>
           </div>
@@ -39,7 +43,7 @@ defmodule AlgokitWeb.MainMenuLive do
       <% else %>
       <div class="flex items-center justify-center px-2">
         <div
-          class="text-center w-full min-[500px]:p-4 max-[500px]:p-2  flex flex-col overflow-hidden min-[500px]:max-w-[80%] rounded-lg shadow-lg"
+          class="text-center w-full md:p-4 p-2  flex flex-col overflow-hidden md:max-w-[80%] rounded-lg shadow-lg"
           style="background-image: url('/images/free-texture.net/CorkBoard02.jpg'); background-size: cover;"
         >
           <p
@@ -58,16 +62,16 @@ defmodule AlgokitWeb.MainMenuLive do
       <% else %>
         <!-- カテゴリー一覧 -->
         <div class="flex items-center justify-center px-2">
-          <div class="p-2 min-[500px]:grid min-[500px]:grid-cols-3 min-[500px]:gap-2 bg-gray-200 min-[500px]:min-w-[80%] max-[500px]:w-full">
+          <div class="p-2 md:grid md:grid-cols-3 md:gap-2 bg-gray-200 md:min-w-[80%] w-full">
             <%= for category <- @categories_all do %>
               <!-- カテゴリー -->
               <div class="shadow-md hover:bg-gray-100 flex items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                   <.link
-                    class="flex justify-between w-full"
+                    class="flex justify-between w-full text-base"
                     href={~p"/category/#{category.id}"}
                   >
                     <%= category.name %>
-                    <span class="inline-flex items-center py-1 px-2 rounded-full text-xs font-medium bg-blue-500 text-white h-auto"
+                    <span class="inline-flex items-center py-1 px-2 rounded-full text-xs font-medium bg-blue-500 text-white w-auto h-auto"
                     >
                       <%= category.count %>
                     </span>
