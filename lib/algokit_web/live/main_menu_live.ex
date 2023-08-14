@@ -18,7 +18,7 @@ defmodule AlgokitWeb.MainMenuLive do
 
       <!-- 最近閲覧したものを表示 -->
       <p class="text-center text-2xl my-2">閲覧履歴</p>
-      <%= if @sorted_algorithms != nil do %>
+      <%= if @sorted_algorithms != [] do %>
         <div class="flex items-center justify-center px-2">
           <div
             class="w-full min-[500px]:p-4 max-[500px]:p-2  flex flex-col overflow-hidden min-[500px]:max-w-[80%] rounded-lg shadow-lg"
@@ -37,7 +37,18 @@ defmodule AlgokitWeb.MainMenuLive do
           </div>
         </div>
       <% else %>
-        <p>履歴なし</p>
+      <div class="flex items-center justify-center px-2">
+        <div
+          class="text-center w-full min-[500px]:p-4 max-[500px]:p-2  flex flex-col overflow-hidden min-[500px]:max-w-[80%] rounded-lg shadow-lg"
+          style="background-image: url('/images/free-texture.net/CorkBoard02.jpg'); background-size: cover;"
+        >
+          <p
+            class=" w-full text-center gap-x-2 py-3 px-4 text-sm font-medium bg-white  border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+          >
+            履歴なし
+          </p>
+        </div>
+      </div>
       <% end %>
 
       <p class="text-2xl text-center my-2">カテゴリー一覧</p>

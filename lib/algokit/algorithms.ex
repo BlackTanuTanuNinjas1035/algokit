@@ -33,6 +33,96 @@ defmodule Algokit.Algorithms do
           "    戻り値 角度度数法",
         example: "calc_angle.mp4"
       })
+      Repo.insert(%Algorithm{
+        name: "サンプル1",
+        category_id: 1,
+        description:
+          "サンプル1",
+        pseudocode:
+          "サンプル1",
+        example: "calc_angle.mp4"
+      })
+      Repo.insert(%Algorithm{
+        name: "サンプル2",
+        category_id: 1,
+        description:
+          "サンプル2",
+        pseudocode:
+          "サンプル2",
+        example: "calc_angle.mp4"
+      })
+      Repo.insert(%Algorithm{
+        name: "サンプル3",
+        category_id: 1,
+        description:
+          "サンプル4",
+        pseudocode:
+          "サンプル4",
+        example: "calc_angle.mp4"
+      })
+      Repo.insert(%Algorithm{
+        name: "サンプル4",
+        category_id: 1,
+        description:
+          "サンプル4",
+        pseudocode:
+          "サンプル4",
+        example: "calc_angle.mp4"
+      })
+      Repo.insert(%Algorithm{
+        name: "サンプル5",
+        category_id: 1,
+        description:
+          "サンプル5",
+        pseudocode:
+          "サンプル5",
+        example: "calc_angle.mp4"
+      })
+      Repo.insert(%Algorithm{
+        name: "サンプル6",
+        category_id: 1,
+        description:
+          "サンプル6",
+        pseudocode:
+          "サンプル6",
+        example: "calc_angle.mp4"
+      })
+      Repo.insert(%Algorithm{
+        name: "サンプル7",
+        category_id: 1,
+        description:
+          "サンプル7",
+        pseudocode:
+          "サンプル7",
+        example: "calc_angle.mp4"
+      })
+      Repo.insert(%Algorithm{
+        name: "サンプル8",
+        category_id: 1,
+        description:
+          "サンプル8",
+        pseudocode:
+          "サンプル8",
+        example: "calc_angle.mp4"
+      })
+      Repo.insert(%Algorithm{
+        name: "サンプル9",
+        category_id: 10,
+        description:
+          "サンプル9",
+        pseudocode:
+          "サンプル9",
+        example: "calc_angle.mp4"
+      })
+      Repo.insert(%Algorithm{
+        name: "サンプル10",
+        category_id: 11,
+        description:
+          "サンプル10",
+        pseudocode:
+          "サンプル10",
+        example: "calc_angle.mp4"
+      })
     else
       Logger.debug("すでに初期化済みです。")
     end
