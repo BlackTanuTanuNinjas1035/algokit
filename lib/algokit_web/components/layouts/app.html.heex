@@ -39,9 +39,9 @@
       <div class="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
         <!-- インフォメーション title -->
         <h3 class="text-gray-800 dark:text-white">
-          いんふぉめーしょん
+          アプリ情報
         </h3>
-        <!-- close button -->
+        <!-- 閉じる button -->
         <button type="button" class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white text-sm dark:text-gray-500 dark:hover:text-gray-400 dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#info-overlay-right">
           <span class="sr-only">Close modal</span>
           <svg class="w-3.5 h-3.5" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,8 +49,9 @@
           </svg>
         </button>
       </div>
-      <!-- text block -->
+      <!-- ボディ部分 -->
       <div class="p-4">
+        <!-- 自己紹介 -->
         <div class="w-full text-center mb-2 p-1 rounded-lg shadow-lg shadow-gray-400 border border-gray-500">
           <p>制作者</p>
           <img class=" inline-block h-[3.875rem] w-[3.875rem] rounded-full ring-2 ring-white dark:ring-gray-800" 
@@ -69,15 +70,16 @@
             </button>
           </div>
         </div>
+        <!-- コメント -->
         <p class="bg-black text-white rounded-md shadow-md">
           当アプリ「<span class="text-xl text-blue-400">Algokit</span>」といいます。<br>
           自作のゲームを制作する際にメモっておきたくなるアルゴリズムをまとめています。<br>
           随時アルゴリズムは追加していく予定です。<br>
           要望や機能の改善があればご連絡ください。<br>
         </p>
-
+        <!-- 終了 ボタン -->
         <div class="text-center m-2">
-          <button type="button" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md bg-red-100 border border-transparent font-semibold text-red-500 hover:text-white hover:bg-red-100 focus:outline-none focus:ring-2 ring-offset-white focus:ring-red-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+          <button type="button" phx-click="exit_app" class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md bg-red-100 border border-transparent font-semibold text-red-500 hover:text-white hover:bg-red-100 focus:outline-none focus:ring-2 ring-offset-white focus:ring-red-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
             アプリ終了
           </button>
         </div>
@@ -93,6 +95,9 @@
 </main>
 
 <script>
+  /*
+    クリップボードスクリプト
+  */
   const copyButton = document.getElementById('copy-button');
   const copyContent = document.getElementById('repository_url');
 
@@ -119,6 +124,3 @@
     }, 2000);
   });
 </script>
-
-
-<!-- Desktop.Window.quit() -->

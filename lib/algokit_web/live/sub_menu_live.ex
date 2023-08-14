@@ -3,6 +3,7 @@ defmodule AlgokitWeb.SubMenuLive do
   alias Algokit.Algorithms
   alias Algokit.Categories
   alias Algokit.Bookmarks
+  require Logger
 
   def render(assigns) do
     ~H"""
@@ -78,6 +79,7 @@ defmodule AlgokitWeb.SubMenuLive do
       <!-- PrevとNext md -->
       <%= if Enum.count(@algorithms_list_md) != 0 do %>
         <div class="inline-flex rounded-md shadow-sm w-full justify-between min-h-[80px] max-[500px]:hidden px-2">
+          <!-- Prev ボタン -->
           <%= if @index_md != 0 do %>
             <button type="button" phx-click="change_index_md" phx-value-diff="-1" class="w-[30%] py-3 px-4 inline-flex justify-center items-center gap-2 -ml-px first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-green-200 text-gray-700 align-middle hover:bg-green-300 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
               Prev
@@ -88,10 +90,12 @@ defmodule AlgokitWeb.SubMenuLive do
             </button>
           <% end %>
 
-            <div class="w-[40%] py-3 px-4 inline-flex justify-center items-center gap-2 -ml-px first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-white text-gray-700 align-middle focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
-              <%= "#{@index_md + 1}ページ目" %>
-            </div>
+          <!-- Index -->
+          <div class="w-[40%] py-3 px-4 inline-flex justify-center items-center gap-2 -ml-px first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-white text-gray-700 align-middle focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
+            <%= "#{@index_md + 1}ページ目" %>
+          </div>
 
+          <!-- Next ボタン -->
           <%= if @index_md < Enum.count(@algorithms_list_md) - 1 do %>
             <button type="button" phx-click="change_index_md" phx-value-diff="1" class="w-[30%] py-3 px-4 inline-flex justify-center items-center gap-2 -ml-px first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-blue-200 text-gray-700 align-middle hover:bg-blue-300 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
               Next
@@ -103,10 +107,10 @@ defmodule AlgokitWeb.SubMenuLive do
         </div>
       <% end %>
 
+      <!-- カテゴリー一覧 -->
       <%= if Enum.count(@algorithms_list_sm) == 0 do %>
         <p class="text-center">登録されていません。</p>
       <% else %>
-
         <!-- スマホ用(5つ) -->
         <div class="flex justify-center">
           <ul class="max-w-xs flex flex-col w-full px-2 min-[500px]:hidden">
@@ -175,6 +179,8 @@ defmodule AlgokitWeb.SubMenuLive do
       algorithms_list
       |> Enum.chunk_every(10)
 
+      Logger.info("Mounted SubMenuLive.")
+
     {:ok, assign(socket,
       category_id: category_id,
       category: category,
@@ -185,18 +191,21 @@ defmodule AlgokitWeb.SubMenuLive do
     )}
   end
 
+  # 縦画面用
   def handle_event("change_index_sm", %{"diff" => diff}, socket) do
     {:noreply, assign(socket,
       index_sm: socket.assigns.index_sm + String.to_integer(diff)
     )}
   end
 
+  # 横画面用
   def handle_event("change_index_md", %{"diff" => diff}, socket) do
     {:noreply, assign(socket,
       index_md: socket.assigns.index_md + String.to_integer(diff)
     )}
   end
 
+  # 単語を入力して検索
   def handle_event("search_by_keyword", %{"keyword" => keyword}, socket) do
 
     algorithms_list_sm =
@@ -218,7 +227,16 @@ defmodule AlgokitWeb.SubMenuLive do
     )}
   end
 
+  # ブックマークボタンに移動
   def handle_event("visit_bookmark", _value, socket) do
+    Logger.info("visit /category/:category_id/bookmark route.")
     {:noreply, push_navigate(socket, to: ~p"/category/#{socket.assigns.category_id}/bookmark")}
+  end
+
+  # infoから終了ボタンを押す
+  def handle_event("exit_app", _value, socket) do
+    Logger.info("exit app.")
+    Desktop.Window.quit()
+    {:noreply, socket}
   end
 end

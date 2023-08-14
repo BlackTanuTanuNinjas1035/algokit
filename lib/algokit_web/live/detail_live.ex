@@ -155,18 +155,6 @@ defmodule AlgokitWeb.DetailLive do
         </div>
 
       </div>
-
-      <script>
-      function togglePseudocode() {
-          var pseudocodeContainer = document.getElementById("PseudocodeContainer");
-          pseudocodeContainer.classList.toggle("hidden");
-      }
-
-      function toggleDescription() {
-        var descriptionContainer = document.getElementById("DescriptionContainer");
-        descriptionContainer.classList.toggle("hidden");
-      }
-      </script>
     """
   end
 
@@ -186,6 +174,8 @@ defmodule AlgokitWeb.DetailLive do
 
     end
 
+    Logger.info("Mounted DetailLive.")
+
     {:ok, assign(socket,
       category_id: category_id,
       algorithm_id: algorithm_id,
@@ -196,36 +186,48 @@ defmodule AlgokitWeb.DetailLive do
 
   # ブックマークから削除したり追加したり
   def handle_event("push_bookmark_button", _values, socket) do
+
+    # ブックマークに登録されている
     if Bookmarks.exists_bookmark?(socket.assigns.algorithm_id) do
       socket.assigns.algorithm_id
       |> Bookmarks.delete_bookmark()
       |> case do
         {:ok, _} ->
-          Logger.info("ブックマークの削除に成功。")
+          Logger.info("Bookmark deleted successfully.")
           {:noreply, assign(socket,
             bookmark: false
           )}
         {:error, _} ->
-          Logger.info("ブックマークの削除に失敗。")
+          Logger.info("Bookmark deleted failed.")
           {:noreply, socket}
       end
+    # ブックマークに登録されていない
     else
       socket.assigns.algorithm_id
       |> Bookmarks.add_bookmark()
       |> case do
         {:ok, _} ->
-          Logger.info("ブックマークの登録に成功。")
+          Logger.info("Bookmark registered successfully.")
           {:noreply, assign(socket,
             bookmark: true
           )}
         {:error, _} ->
-          Logger.info("ブックマークの登録に失敗。")
+          Logger.info("Bookmark registered failed.")
           {:noreply, socket}
       end
     end
   end
 
+  # ブックマークボタンに移動
   def handle_event("visit_bookmark", _value, socket) do
+    Logger.info("visit /category/:category_id/algorithm/:algorithm_id/bookmark route.")
     {:noreply, push_navigate(socket, to: ~p"/category/#{socket.assigns.category_id}/algorithm/#{socket.assigns.algorithm_id}/bookmark")}
+  end
+
+  # infoから終了ボタンを押す
+  def handle_event("exit_app", _value, socket) do
+    Logger.info("exit app.")
+    Desktop.Window.quit()
+    {:noreply, socket}
   end
 end

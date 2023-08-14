@@ -2,6 +2,7 @@ defmodule AlgokitWeb.MainMenuLive do
   use AlgokitWeb, :live_view
   alias Algokit.Categories
   alias Algokit.Algorithms
+  require Logger
 
   def render(assigns) do
     ~H"""
@@ -44,12 +45,12 @@ defmodule AlgokitWeb.MainMenuLive do
       <%= if Enum.count(@categories) == 0 do %>
         <p class="text-center">登録されていません。</p>
       <% else %>
-
+        <!-- カテゴリー一覧 -->
         <div class="flex items-center justify-center px-2">
           <div class="p-2 min-[500px]:grid min-[500px]:grid-cols-3 min-[500px]:gap-2 bg-gray-200 min-[500px]:min-w-[80%] max-[500px]:w-full">
             <%= for category <- @categories_all do %>
+              <!-- カテゴリー -->
               <div class="shadow-md hover:bg-gray-100 flex items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
-
                   <.link
                     class="flex justify-between w-full"
                     href={~p"/category/#{category.id}"}
@@ -60,7 +61,6 @@ defmodule AlgokitWeb.MainMenuLive do
                       <%= category.count %>
                     </span>
                   </.link>
-
               </div>
             <% end %>
           </div>
@@ -76,6 +76,7 @@ defmodule AlgokitWeb.MainMenuLive do
 
     sorted_algorithms = Algorithms.fetch_recent_last_viewed_date()
 
+    Logger.info("Mounted ManMenuLive.")
     {:ok, assign(socket,
       categories: categories |> Enum.chunk_every(9),
       categories_all: categories,
@@ -84,15 +85,17 @@ defmodule AlgokitWeb.MainMenuLive do
     )}
   end
 
-  def handle_event("change_index", %{"diff" => diff}, socket) do
-    {:noreply, assign(socket,
-      index: socket.assigns.index + String.to_integer(diff)
-    )}
+  # ブックマークボタンに移動
+  def handle_event("visit_bookmark", _value, socket) do
+    Logger.info("visit /bookmark route.")
+    {:noreply, push_navigate(socket, to: ~p"/bookmark")}
   end
 
-  def handle_event("visit_bookmark", _value, socket) do
-
-    {:noreply, push_navigate(socket, to: ~p"/bookmark")}
+  # infoから終了ボタンを押す
+  def handle_event("exit_app", _value, socket) do
+    Logger.info("exit app.")
+    Desktop.Window.quit()
+    {:noreply, socket}
   end
 
 end

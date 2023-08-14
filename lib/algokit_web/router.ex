@@ -17,10 +17,11 @@ defmodule AlgokitWeb.Router do
   scope "/", AlgokitWeb do
     pipe_through :browser
 
+    # 各機能
     live "/", MainMenuLive
     live "/category/:category_id", SubMenuLive
     live "/category/:category_id/algorithm/:algorithm_id", DetailLive
-    # ブックマーク
+    # 各機能 -> ブックマーク
     live "/bookmark", BookmarkLive
     live "/category/:category_id/bookmark", BookmarkLive
     live "/category/:category_id/algorithm/:algorithm_id/bookmark", BookmarkLive

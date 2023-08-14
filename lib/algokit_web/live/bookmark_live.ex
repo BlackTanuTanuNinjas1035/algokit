@@ -1,7 +1,7 @@
 defmodule AlgokitWeb.BookmarkLive do
   use AlgokitWeb, :live_view
   alias Algokit.Bookmarks
-  import Logger
+  require Logger
 
   def render(assigns) do
     ~H"""
@@ -50,15 +50,13 @@ defmodule AlgokitWeb.BookmarkLive do
         </div>
       </div>
       <% end %>
-
-
     """
   end
 
   # detailから
   def mount(%{"category_id" => category_id, "algorithm_id" => algorithm_id}, _session, socket) do
 
-    Logger.info("detail -> bookmark")
+    Logger.info("Mounted from DetailLive to BookmarkLive.")
 
     bookmarks = Bookmarks.list_bookmarks()
     {:ok, assign(socket,
@@ -71,7 +69,7 @@ defmodule AlgokitWeb.BookmarkLive do
   # sub_menuから
   def mount(%{"category_id" => category_id}, _session, socket) do
 
-    Logger.info("sub_menu -> bookmark")
+    Logger.info("Mounted from SubMenuLive to BookmarkLive.")
 
     bookmarks = Bookmarks.list_bookmarks()
     {:ok, assign(socket,
@@ -84,7 +82,7 @@ defmodule AlgokitWeb.BookmarkLive do
   # menuから
   def mount(%{}, _session, socket) do
 
-    Logger.info("menu -> bookmark")
+    Logger.info("Mounted from MainMenuLive to BookmarkLive.")
 
     bookmarks = Bookmarks.list_bookmarks()
     {:ok, assign(socket,
@@ -94,7 +92,15 @@ defmodule AlgokitWeb.BookmarkLive do
     )}
   end
 
+  # ブックマークボタンを押しても何もしない
   def handle_event("visit_bookmark", _value, socket) do
+    {:noreply, socket}
+  end
+
+  # infoから終了ボタンを押す
+  def handle_event("exit_app", _value, socket) do
+    Logger.info("exit app.")
+    Desktop.Window.quit()
     {:noreply, socket}
   end
 
