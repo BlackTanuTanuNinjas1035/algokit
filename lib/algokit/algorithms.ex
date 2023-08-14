@@ -107,7 +107,7 @@ defmodule Algokit.Algorithms do
       })
       Repo.insert(%Algorithm{
         name: "サンプル9",
-        category_id: 10,
+        category_id: 1,
         description:
           "サンプル9",
         pseudocode:
@@ -116,7 +116,7 @@ defmodule Algokit.Algorithms do
       })
       Repo.insert(%Algorithm{
         name: "サンプル10",
-        category_id: 11,
+        category_id: 1,
         description:
           "サンプル10",
         pseudocode:
