@@ -33,6 +33,7 @@ defmodule Algokit.Algorithms do
           "    戻り値 角度度数法",
         example: "calc_angle.mp4"
       })
+      # サンプルデータ
       Repo.insert(%Algorithm{
         name: "サンプル1",
         category_id: 1,

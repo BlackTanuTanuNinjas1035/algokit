@@ -10,7 +10,7 @@ defmodule AlgokitWeb.SubMenuLive do
       <div class="flex justify-between py-2 px-2 align_bottom">
         <.link
         href={~p"/"}
-          class="flex justify-center items-center text-center sm:min-h-[50px] sm:min-w-[100px] min-h-[50px] min-w-[100px] bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          class="flex justify-center items-center text-center md:min-h-[50px] md:min-w-[100px] min-h-[50px] min-w-[100px] bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
         >
           戻る
         </.link>
@@ -23,12 +23,12 @@ defmodule AlgokitWeb.SubMenuLive do
       <!--カテゴリ名 -->
       <div class="w-full flex justify-center mb-2">
         <div class="flex flex-col bg-yellow-100 border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
-          <div class="bg-yellow-200 border-b rounded-t-xl py-3 px-4 sm:py-4 sm:px-5 dark:bg-gray-800 dark:border-gray-700">
+          <div class="bg-yellow-200 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-gray-800 dark:border-gray-700">
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-500">
               カテゴリー
             </p>
           </div>
-          <div class="p-4 sm:p-5">
+          <div class="p-4 md:p-5">
             <h3 class="text-2xl text-center text-gray-800 dark:text-white">
               <%= "#{@category.name}" %>
             </h3>
@@ -38,19 +38,20 @@ defmodule AlgokitWeb.SubMenuLive do
 
       <!-- 検索フォーム -->
       <.form
-        :let={f}
+        :let={form}
+        for={}
         phx-submit="search_by_keyword"
         class="w-full"
       >
         <div class="mb-2 w-screen flex justify-center items-center">
           <label for="hs-trailing-button-add-on-with-icon" class="sr-only">Label</label>
           <div class="flex rounded-md shadow-sm">
-            <.input type="text" field={f[:keyword]} id="hs-trailing-button-add-on-with-icon"
-              class="text-xl px-4 block  max-h-[50px] sm:min-w-[400px] sm:max-h-[50px] border-gray-200 shadow-sm rounded-l-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+            <.input type="text" field={form[:keyword]} id="hs-trailing-button-add-on-with-icon"
+              class="text-xl px-4 block  max-h-[50px] md:min-w-[400px] md:max-h-[50px] border-gray-200 shadow-sm rounded-l-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
               placeholder="単語で検索"
             />
             <.button
-              class="max-h-[50px] sm:max-h-[50px] sm:min-w-[80px] inline-flex flex-shrink-0 justify-center items-center h-[2.875rem] w-[2.875rem] rounded-r-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm"
+              class="max-h-[50px] md:max-h-[50px] md:min-w-[80px] inline-flex flex-shrink-0 justify-center items-center h-[2.875rem] w-[2.875rem] rounded-r-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm"
             >
               <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -62,7 +63,7 @@ defmodule AlgokitWeb.SubMenuLive do
 
       <!-- PrevとNext sm -->
       <%= if Enum.count(@algorithms_list_sm) != 0 do %>
-        <div class="flex justify-center mb-2 sm:hidden">
+        <div class="flex justify-center mb-2 md:hidden">
           <div class="bg-white justify-center inline-flex -space-x-0 divide-x divide-gray-300 overflow-hidden rounded-lg border border-gray-300 shadow-sm">
             <%= if @index_sm != 0 do %>
               <button type="button" phx-click="change_index_sm" phx-value-diff="-1" class="bg-green-200 px-6 py-3 text-center text-base font-medium text-secondary-700 hover:bg-green-300">Prev</button>
@@ -81,11 +82,8 @@ defmodule AlgokitWeb.SubMenuLive do
 
       <!-- PrevとNext md -->
       <%= if Enum.count(@algorithms_list_md) != 0 do %>
-        <div class="flex justify-center items-center  text-cneter rounded-md shadow-sm  hidden sm:block w-full">
+        <div class="flex justify-center items-center  text-cneter rounded-md shadow-sm  hidden md:block w-full">
 
-        <!--
-          少画面で横にしたときPrevが潰れる。
-        -->
           <div class=" flex justify-center items-center text-center w-full">
 
             <!-- Prev ボタン -->

@@ -5,7 +5,6 @@ defmodule Algokit.Repo do
 
   alias Algokit.Categories
   alias Algokit.Algorithms
-  alias Algokit.Bookmarks
 
 
   @doc """
