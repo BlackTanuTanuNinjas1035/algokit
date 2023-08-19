@@ -23,13 +23,13 @@ defmodule AlgokitWeb.SubMenuLive do
       <!--カテゴリ名 -->
       <div class="w-full flex justify-center mb-2">
         <div class="flex flex-col bg-yellow-100 border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
-          <div class="bg-yellow-200 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-gray-800 dark:border-gray-700">
+          <div class="bg-yellow-200 border-b rounded-t-xl py-1 px-4 md:py-4 md:px-5 dark:bg-gray-800 dark:border-gray-700">
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-500">
               カテゴリー
             </p>
           </div>
-          <div class="p-4 md:p-5">
-            <h3 class="text-2xl text-center text-gray-800 dark:text-white">
+          <div class="p-3 md:p-5">
+            <h3 class="text-xl text-center text-gray-800 dark:text-white">
               <%= "#{@category.name}" %>
             </h3>
           </div>
@@ -43,7 +43,7 @@ defmodule AlgokitWeb.SubMenuLive do
         phx-submit="search_by_keyword"
         class="w-full"
       >
-        <div class="mb-2 w-screen flex justify-center items-center">
+        <div class="w-screen flex justify-center items-center">
           <label for="hs-trailing-button-add-on-with-icon" class="sr-only">Label</label>
           <div class="flex rounded-md shadow-sm">
             <.input type="text" field={form[:keyword]} id="hs-trailing-button-add-on-with-icon"
@@ -60,6 +60,83 @@ defmodule AlgokitWeb.SubMenuLive do
           </div>
         </div>
       </.form>
+
+      <!-- ソート -->
+      <div class="flex justify-center items-center my-1">
+        <div class="hs-dropdown relative inline-flex">
+          <!-- ソート ボタン -->
+          <button id="hs-dropdown-default" type="button" class="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
+            ソート
+            <svg class="hs-dropdown-open:rotate-180 w-2.5 h-2.5 text-gray-600" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 5L8.16086 10.6869C8.35239 10.8637 8.64761 10.8637 8.83914 10.6869L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+
+          <div
+            class="hs-dropdown-menu bg-white absolute left-[100px]  transition-[opacity,margin] duration-[0.1ms] hs-dropdown-open:opacity-100 opacity-0 max-w-max z-10 mt-2  shadow-md rounded-lg p-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700 transform -translate-x-1/2"
+            aria-labelledby="sort-dropdown"
+            style="background-image: url('/images/gahag-0017080331.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; width: 100%; height: auto; margin: 0; overflow: hidden;"
+          >
+            <div class="flex">
+              <!-- ソート リスト -->
+              <ul>
+                <li
+                  class="flex items-center mb-2 gap-x-3.5 py-2 px-3 text-md text-gray-800 bg-white hover:bg-yellow-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                  phx-click="sort_list"
+                  phx-value-key="name"
+                  phx-value-order="asc"
+                >
+                  名前
+                </li>
+                <li
+                  class="flex items-center mb-2 gap-x-3.5 py-2 px-3 text-md text-gray-800 bg-white hover:bg-yellow-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                  phx-click="sort_list"
+                  phx-value-key="id"
+                  phx-value-order="asc"
+                >
+                  ID
+                </li>
+                <li
+                  class="flex items-center gap-x-3.5 py-2 px-3 text-md text-gray-800 bg-white hover:bg-yellow-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                  phx-click="sort_list"
+                  phx-value-key="bookmark"
+                  phx-value-order="desc"
+                >
+                  ブックマーク順
+                </li>
+              </ul>
+              <!-- 反転 -->
+              <ul>
+                <li
+                  class="max-w-max flex mb-2 items-center gap-x-3.5 py-2 px-3 text-md text-white bg-red-500 hover:bg-red-300 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                  phx-click="sort_list"
+                  phx-value-key="name"
+                  phx-value-order="desc"
+                >
+                  反転
+                </li>
+                <li
+                  class="max-w-max flex mb-2 items-center gap-x-3.5 py-2 px-3  text-md text-white bg-red-500 hover:bg-red-300 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                  phx-click="sort_list"
+                  phx-value-key="id"
+                  phx-value-order="desc"
+                >
+                  反転
+                </li>
+                <li
+                  class="max-w-max flex items-center gap-x-3.5 py-2 px-3  text-md text-white bg-red-500 hover:bg-red-300 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                  phx-click="sort_list"
+                  phx-value-key="bookmark"
+                  phx-value-order="asc"
+                >
+                  反転
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- PrevとNext sm -->
       <%= if Enum.count(@algorithms_list_sm) != 0 do %>
@@ -175,6 +252,7 @@ defmodule AlgokitWeb.SubMenuLive do
       category_id
       |> Algorithms.list_algorithms_by_category_id()
       |> Enum.map(fn a -> Map.put(a, :is_bookmark, Bookmarks.exists_bookmark?(a.id)) end)
+      |> Enum.map(fn a -> Map.put(a, :added_date, Bookmarks.get_date(a.id)) end)
 
     # スマホ用
     algorithms_list_sm =
@@ -245,5 +323,45 @@ defmodule AlgokitWeb.SubMenuLive do
     Logger.info("exit app.")
     Desktop.Window.quit()
     {:noreply, socket}
+  end
+
+  # アルゴリズムリストをソート
+  def handle_event("sort_list", %{"key" => key, "order" => order}, socket) do
+
+    sorted_algorithms_list_sm = socket.assigns.algorithms_list_sm
+      |> List.flatten
+      |> Enum.sort(
+          case order do
+            "asc" ->
+              case key do
+                "name"     -> &(&1.name <= &2.name)
+                "id"       -> &(&1.id <= &2.id)
+                "bookmark" -> &(&1.added_date <= &2.added_date)
+              end
+            "desc" ->
+              case key do
+                "name"     -> &(&1.name >= &2.name)
+                "id"       -> &(&1.id >= &2.id)
+                "bookmark" -> &(&1.added_date >= &2.added_date)
+              end
+          end
+        )
+      |> Enum.chunk_every(5)
+    sorted_algorithms_list_md = socket.assigns.algorithms_list_md
+    |> List.flatten
+    |> Enum.sort(
+      case order do
+        "asc" -> &(&1.name <= &2.name)
+        "desc" -> &(&1.name >= &2.name)
+      end
+    )
+    |> Enum.chunk_every(10)
+
+
+    {:noreply, assign(socket,
+      algorithms_list_sm: sorted_algorithms_list_sm,
+      algorithms_list_md: sorted_algorithms_list_md
+    )}
+
   end
 end

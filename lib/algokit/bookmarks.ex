@@ -9,6 +9,9 @@ defmodule Algokit.Bookmarks do
     |> Repo.all()
   end
 
+  def get_date(id) do
+    Repo.get_by(Bookmark, algorithm_id: id)
+  end
   def add_bookmark(id) do
     Repo.insert(%Bookmark{added_date: Date.utc_today(), algorithm_id: id})
   end
