@@ -36,107 +36,109 @@ defmodule AlgokitWeb.SubMenuLive do
         </div>
       </div>
 
-      <!-- 検索フォーム -->
-      <.form
-        :let={form}
-        for={}
-        phx-submit="search_by_keyword"
-        class="w-full"
-      >
-        <div class="w-screen flex justify-center items-center">
-          <label for="hs-trailing-button-add-on-with-icon" class="sr-only">Label</label>
-          <div class="flex rounded-md shadow-sm">
-            <.input type="text" field={form[:keyword]} id="hs-trailing-button-add-on-with-icon"
-              class="text-xl px-4 block  max-h-[50px] md:min-w-[400px] md:max-h-[50px] border-gray-200 shadow-sm rounded-l-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
-              placeholder="単語で検索"
-            />
-            <.button
-              class="max-h-[50px] md:max-h-[50px] md:min-w-[80px] inline-flex flex-shrink-0 justify-center items-center h-[2.875rem] w-[2.875rem] rounded-r-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm"
-            >
-              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-              </svg>
-            </.button>
+      <%= if @algorithms_list_sm != [] && @algorithms_list_md != [] do %>
+        <!-- 検索フォーム -->
+        <.form
+          :let={form}
+          for={}
+          phx-submit="search_by_keyword"
+          class="w-full"
+        >
+          <div class="w-screen flex justify-center items-center">
+            <label for="hs-trailing-button-add-on-with-icon" class="sr-only">Label</label>
+            <div class="flex rounded-md shadow-sm">
+              <.input type="text" field={form[:keyword]} id="hs-trailing-button-add-on-with-icon"
+                class="text-xl px-4 block  max-h-[50px] md:min-w-[400px] md:max-h-[50px] border-gray-200 shadow-sm rounded-l-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                placeholder="単語で検索"
+              />
+              <.button
+                class="max-h-[50px] md:max-h-[50px] md:min-w-[80px] inline-flex flex-shrink-0 justify-center items-center h-[2.875rem] w-[2.875rem] rounded-r-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm"
+              >
+                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+              </.button>
+            </div>
           </div>
-        </div>
-      </.form>
+        </.form>
 
-      <!-- ソート -->
-      <div class="flex justify-center items-center my-1">
-        <div class="hs-dropdown relative inline-flex">
-          <!-- ソート ボタン -->
-          <button id="hs-dropdown-default" type="button" class="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
-            ソート
-            <svg class="hs-dropdown-open:rotate-180 w-2.5 h-2.5 text-gray-600" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 5L8.16086 10.6869C8.35239 10.8637 8.64761 10.8637 8.83914 10.6869L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </button>
+        <!-- ソート -->
+        <div class="flex justify-center items-center my-1">
+          <div class="hs-dropdown relative inline-flex">
+            <!-- ソート ボタン -->
+            <button id="hs-dropdown-default" type="button" class="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
+              ソート
+              <svg class="hs-dropdown-open:rotate-180 w-2.5 h-2.5 text-gray-600" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 5L8.16086 10.6869C8.35239 10.8637 8.64761 10.8637 8.83914 10.6869L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
 
 
-          <div
-            class="hs-dropdown-menu bg-white absolute left-[100px]  transition-[opacity,margin] duration-[0.1ms] hs-dropdown-open:opacity-100 opacity-0 max-w-max z-10 mt-2  shadow-md rounded-lg p-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700 transform -translate-x-1/2"
-            aria-labelledby="sort-dropdown"
-            style="background-image: url('/images/gahag-0017080331.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; width: 100%; height: auto; margin: 0; overflow: hidden;"
-          >
-            <div class="flex">
-              <!-- ソート リスト -->
-              <ul>
-                <li
-                  class="flex items-center mb-2 gap-x-3.5 py-2 px-3 text-md text-gray-800 bg-white hover:bg-yellow-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                  phx-click="sort_list"
-                  phx-value-key="name"
-                  phx-value-order="asc"
-                >
-                  名前
-                </li>
-                <li
-                  class="flex items-center mb-2 gap-x-3.5 py-2 px-3 text-md text-gray-800 bg-white hover:bg-yellow-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                  phx-click="sort_list"
-                  phx-value-key="id"
-                  phx-value-order="asc"
-                >
-                  ID
-                </li>
-                <li
-                  class="flex items-center gap-x-3.5 py-2 px-3 text-md text-gray-800 bg-white hover:bg-yellow-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                  phx-click="sort_list"
-                  phx-value-key="bookmark"
-                  phx-value-order="desc"
-                >
-                  ブックマーク順
-                </li>
-              </ul>
-              <!-- 反転 -->
-              <ul>
-                <li
-                  class="max-w-max flex mb-2 items-center gap-x-3.5 py-2 px-3 text-md text-white bg-red-500 hover:bg-red-300 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                  phx-click="sort_list"
-                  phx-value-key="name"
-                  phx-value-order="desc"
-                >
-                  反転
-                </li>
-                <li
-                  class="max-w-max flex mb-2 items-center gap-x-3.5 py-2 px-3  text-md text-white bg-red-500 hover:bg-red-300 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                  phx-click="sort_list"
-                  phx-value-key="id"
-                  phx-value-order="desc"
-                >
-                  反転
-                </li>
-                <li
-                  class="max-w-max flex items-center gap-x-3.5 py-2 px-3  text-md text-white bg-red-500 hover:bg-red-300 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                  phx-click="sort_list"
-                  phx-value-key="bookmark"
-                  phx-value-order="asc"
-                >
-                  反転
-                </li>
-              </ul>
+            <div
+              class="hs-dropdown-menu bg-white absolute left-[100px]  transition-[opacity,margin] duration-[10.1ms] hs-dropdown-open:opacity-100 opacity-0 max-w-max z-10 mt-2  shadow-md rounded-lg p-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700 transform -translate-x-1/2"
+              aria-labelledby="sort-dropdown"
+              style="background-image: url('/images/gahag-0017080331.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; width: 100%; height: auto; margin: 0; overflow: hidden;"
+            >
+              <div class="flex">
+                <!-- ソート リスト -->
+                <ul>
+                  <li
+                    class="flex items-center mb-2 gap-x-3.5 py-2 px-3 text-md text-gray-800 bg-white hover:bg-yellow-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    phx-click="sort_list"
+                    phx-value-key="name"
+                    phx-value-order="asc"
+                  >
+                    名前
+                  </li>
+                  <li
+                    class="flex items-center mb-2 gap-x-3.5 py-2 px-3 text-md text-gray-800 bg-white hover:bg-yellow-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    phx-click="sort_list"
+                    phx-value-key="id"
+                    phx-value-order="asc"
+                  >
+                    ID
+                  </li>
+                  <li
+                    class="flex items-center gap-x-3.5 py-2 px-3 text-md text-gray-800 bg-white hover:bg-yellow-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    phx-click="sort_list"
+                    phx-value-key="bookmark"
+                    phx-value-order="desc"
+                  >
+                    ブックマーク順
+                  </li>
+                </ul>
+                <!-- 反転 -->
+                <ul>
+                  <li
+                    class="max-w-max flex mb-2 items-center gap-x-3.5 py-2 px-3 text-md text-white bg-red-500 hover:bg-red-300 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    phx-click="sort_list"
+                    phx-value-key="name"
+                    phx-value-order="desc"
+                  >
+                    反転
+                  </li>
+                  <li
+                    class="max-w-max flex mb-2 items-center gap-x-3.5 py-2 px-3  text-md text-white bg-red-500 hover:bg-red-300 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    phx-click="sort_list"
+                    phx-value-key="id"
+                    phx-value-order="desc"
+                  >
+                    反転
+                  </li>
+                  <li
+                    class="max-w-max flex items-center gap-x-3.5 py-2 px-3  text-md text-white bg-red-500 hover:bg-red-300 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    phx-click="sort_list"
+                    phx-value-key="bookmark"
+                    phx-value-order="asc"
+                  >
+                    反転
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
 
       <!-- PrevとNext sm -->
       <%= if Enum.count(@algorithms_list_sm) != 0 do %>
@@ -165,7 +167,7 @@ defmodule AlgokitWeb.SubMenuLive do
 
             <!-- Prev ボタン -->
             <%= if @index_md != 0 do %>
-              <button type="button" phx-click="change_index_md" phx-value-diff="-1" class="w-[120px] h-[50px] h-full  inline-flex justify-center items-center first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-green-200 text-gray-700 align-middle hover:bg-green-300 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
+              <button type="button" phx-click="change_index_md" phx-value-diff="-1" class="w-[120px] h-[50px] h-full py-3 px-4  inline-flex justify-center items-center first:rounded-l-lg first:ml-0 last:rounded-r-lg border font-medium bg-green-200 text-gray-700 align-middle hover:bg-green-300 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400">
                 Prev
               </button>
             <% else %>
@@ -194,7 +196,17 @@ defmodule AlgokitWeb.SubMenuLive do
 
       <!-- カテゴリー一覧 -->
       <%= if Enum.count(@algorithms_list_sm) == 0 do %>
-        <p class="text-center">登録されていません。</p>
+        <div class="flex flex-col justify-center items-center">
+          <div class="m-3 max-w-max text-center text-xl p-3 rounded-lg border border-gray-500 shadow-lg bg-white">
+            <p>登録されていません。</p>
+            <p class="text-right text-sm text-gray-500">by tanuki</p>
+          </div>
+          <img class=""
+            src={~p"/images/たぬ(素材).png"}
+            style="max-width:30%; max-height:30%; object-fit:contain;"
+            alt="Image Description"
+          >
+        </div>
       <% else %>
         <!-- スマホ用(5つ) -->
         <div class="flex justify-center block md:hidden">
@@ -344,17 +356,26 @@ defmodule AlgokitWeb.SubMenuLive do
                 "id"       -> &(&1.id >= &2.id)
                 "bookmark" -> &(&1.added_date >= &2.added_date)
               end
-          end
-        )
+          end)
       |> Enum.chunk_every(5)
+
     sorted_algorithms_list_md = socket.assigns.algorithms_list_md
     |> List.flatten
     |> Enum.sort(
       case order do
-        "asc" -> &(&1.name <= &2.name)
-        "desc" -> &(&1.name >= &2.name)
-      end
-    )
+        "asc" ->
+          case key do
+            "name"     -> &(&1.name <= &2.name)
+            "id"       -> &(&1.id <= &2.id)
+            "bookmark" -> &(&1.added_date <= &2.added_date)
+          end
+        "desc" ->
+          case key do
+            "name"     -> &(&1.name >= &2.name)
+            "id"       -> &(&1.id >= &2.id)
+            "bookmark" -> &(&1.added_date >= &2.added_date)
+          end
+      end)
     |> Enum.chunk_every(10)
 
 
