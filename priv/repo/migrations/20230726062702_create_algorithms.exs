@@ -7,7 +7,7 @@ defmodule Algokit.Repo.Migrations.CreateAlgorithms do
       add :description, :string
       add :pseudocode, :string
       add :example, :string
-      add :last_viewed_date, :date, null: true
+      add :last_viewed_date, :naive_datetime, null: true
 
       add :category_id, references(:categories), null: false
 

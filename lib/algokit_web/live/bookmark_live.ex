@@ -377,4 +377,16 @@ defmodule AlgokitWeb.BookmarkLive do
     )}
   end
 
+  def handle_event("change_index_sm", %{"diff" => diff}, socket) do
+    {:noreply, assign(socket,
+      index_sm: socket.assigns.index_sm + String.to_integer(diff)
+    )}
+  end
+
+  def handle_event("change_index_md", %{"diff" => diff}, socket) do
+    {:noreply, assign(socket,
+      index_md: socket.assigns.index_md + String.to_integer(diff)
+    )}
+  end
+
 end

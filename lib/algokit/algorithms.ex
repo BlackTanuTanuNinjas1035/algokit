@@ -173,8 +173,9 @@ defmodule Algokit.Algorithms do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_last_viewed_date(algorithm, date) do
-    Ecto.Changeset.change(algorithm, last_viewed_date: date)
+  def update_last_viewed_date(id, date) do
+    algo = Repo.get(Algorithm, id)
+    Ecto.Changeset.change(algo, last_viewed_date: date)
     |> Repo.update()
   end
 

@@ -7,7 +7,7 @@ defmodule Algokit.Algorithms.Algorithm do
   schema "algorithms" do
     field :description, :string
     field :example, :string
-    field :last_viewed_date, :date
+    field :last_viewed_date, :naive_datetime
     field :name, :string
     field :pseudocode, :string
 

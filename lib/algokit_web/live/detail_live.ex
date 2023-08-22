@@ -166,7 +166,7 @@ defmodule AlgokitWeb.DetailLive do
       |> Algorithms.get()
 
     # 最終閲覧日入力処理
-    case Algorithms.update_last_viewed_date(algorithm, Date.utc_today()) do
+    case Algorithms.update_last_viewed_date(algorithm_id, NaiveDateTime.local_now) do
       {:ok, _} ->
         Logger.info("最終閲覧日の更新に成功")
       {:error, _} ->
