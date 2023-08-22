@@ -41,9 +41,9 @@ defmodule AlgokitWeb.DetailLive do
         <!-- Description -->
         <div class="w-full mb-2">
 
-          <div class="flex mr-2 md:justify-center md:my-1">
+          <div class="flex mr-2 justify-center md:my-1">
             <p class="text-3xl text-2xl mr-2  border-b-2 border-gray-500">1. 説明</p>
-            <p class="text-red-500 md:hidden block text-sm pt-2">※クリックで詳細</p>
+            <p class="text-red-500 md:hidden block text-sm pt-2">※タップで詳細</p>
           </div>
 
           <!-- スマホ画面 -->
